@@ -500,4 +500,50 @@ class AccountsSDKTests: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
         XCTAssertNotNil(object)
     }
+    
+    func testGetBullionItems() {
+        let expectation = XCTestExpectation(description: "Bullion items that are owned by user should be returned")
+        var object: PSMetadataAwareResponse<PSBullion>?
+        let filter = PSBullionFilter()
+        filter.accountNumber = "EVPXXXXXXXXXXXXXXX"
+        
+        accountsApiClient
+            .getBullionItems(filter: filter)
+            .done { result in object = result }
+            .catch { error in XCTFail(error.localizedDescription) }
+            .finally { expectation.fulfill() }
+        
+        wait(for: [expectation], timeout: 5.0)
+        XCTAssertNotNil(object)
+    }
+    
+    func testGetBullionOptions() {
+        let expectation = XCTestExpectation(description: "Available bullion options should be returned")
+        var object: PSMetadataAwareResponse<PSBullionOption>?
+        
+        accountsApiClient
+            .getBullionOptions()
+            .done { result in object = result }
+            .catch { error in XCTFail(error.localizedDescription) }
+            .finally { expectation.fulfill() }
+        
+        wait(for: [expectation], timeout: 5.0)
+        XCTAssertNotNil(object)
+    }
+    
+    func testGetUnallocatedBullionBalance() {
+        let expectation = XCTestExpectation(description: "Unallocated bullion balance should be returned")
+        var object: PSMetadataAwareResponse<PSUnallocatedBullionBalance>?
+        
+        let filter = PSBullionFilter()
+        filter.accountNumber = "EVPXXXXXXXXXXXXXXX"
+        accountsApiClient
+            .getUnallocatedBullionBalance(filter: filter)
+            .done { result in object = result }
+            .catch { error in XCTFail(error.localizedDescription) }
+            .finally { expectation.fulfill() }
+        
+        wait(for: [expectation], timeout: 5.0)
+        XCTAssertNotNil(object)
+    }
 }

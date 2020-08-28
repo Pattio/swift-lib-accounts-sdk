@@ -214,4 +214,18 @@ public class AccountsApiClient: PSBaseApiClient {
             )
         )
     }
+    
+    public func getBullionItems(filter: PSBullionFilter) -> Promise<PSMetadataAwareResponse<PSBullion>> {
+        return doRequest(requestRouter: AccountsApiRequestRouter.getBullionItems(filter: filter))
+    }
+    
+    public func getBullionOptions() -> Promise<PSMetadataAwareResponse<PSBullionOption>> {
+        return doRequest(requestRouter: AccountsApiRequestRouter.getBullionOptions)
+    }
+    
+    public func getUnallocatedBullionBalance(
+        filter: PSBullionFilter
+    ) -> Promise<PSMetadataAwareResponse<PSUnallocatedBullionBalance>> {
+        return doRequest(requestRouter: AccountsApiRequestRouter.getUnallocatedBullionBalance(filter: filter))
+    }
 }

@@ -34,6 +34,11 @@
 		601C0E162449A0A20080C262 /* PSAuthorizationUserLimits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601C0E152449A0A20080C262 /* PSAuthorizationUserLimits.swift */; };
 		60397BBB248640F100234CD3 /* PSAuthorizationUserLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60397BBA248640F100234CD3 /* PSAuthorizationUserLimit.swift */; };
 		6068EF3D24168CDE00496B4A /* PSPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6068EF3C24168CDE00496B4A /* PSPassword.swift */; };
+		609A472724F8F89500AE0827 /* PSBullion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A472624F8F89500AE0827 /* PSBullion.swift */; };
+		609A472924F8FFE700AE0827 /* PSBullionOptionWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A472824F8FFE700AE0827 /* PSBullionOptionWeight.swift */; };
+		609A472B24F9000F00AE0827 /* PSBullionFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A472A24F9000F00AE0827 /* PSBullionFilter.swift */; };
+		60A1946824F7FF60000785D1 /* PSBullionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A1946724F7FF60000785D1 /* PSBullionOption.swift */; };
+		60A1946A24F803BE000785D1 /* PSUnallocatedBullionBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A1946924F803BE000785D1 /* PSUnallocatedBullionBalance.swift */; };
 		60AA35D9243F6AA900F857CD /* ObjectFromKeyTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AA35D8243F6AA900F857CD /* ObjectFromKeyTransform.swift */; };
 		60F625732490BEE300271658 /* PSAuthorizationUserValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F625722490BEE300271658 /* PSAuthorizationUserValidationResult.swift */; };
 		745D4FE224345FB3002403D9 /* PSPurposeCodeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745D4FE124345FB3002403D9 /* PSPurposeCodeCollection.swift */; };
@@ -127,6 +132,11 @@
 		601C0E152449A0A20080C262 /* PSAuthorizationUserLimits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSAuthorizationUserLimits.swift; sourceTree = "<group>"; };
 		60397BBA248640F100234CD3 /* PSAuthorizationUserLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSAuthorizationUserLimit.swift; sourceTree = "<group>"; };
 		6068EF3C24168CDE00496B4A /* PSPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPassword.swift; sourceTree = "<group>"; };
+		609A472624F8F89500AE0827 /* PSBullion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSBullion.swift; sourceTree = "<group>"; };
+		609A472824F8FFE700AE0827 /* PSBullionOptionWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSBullionOptionWeight.swift; sourceTree = "<group>"; };
+		609A472A24F9000F00AE0827 /* PSBullionFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSBullionFilter.swift; sourceTree = "<group>"; };
+		60A1946724F7FF60000785D1 /* PSBullionOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSBullionOption.swift; sourceTree = "<group>"; };
+		60A1946924F803BE000785D1 /* PSUnallocatedBullionBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSUnallocatedBullionBalance.swift; sourceTree = "<group>"; };
 		60AA35D8243F6AA900F857CD /* ObjectFromKeyTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectFromKeyTransform.swift; sourceTree = "<group>"; };
 		60F625722490BEE300271658 /* PSAuthorizationUserValidationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSAuthorizationUserValidationResult.swift; sourceTree = "<group>"; };
 		745D4FE124345FB3002403D9 /* PSPurposeCodeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPurposeCodeCollection.swift; sourceTree = "<group>"; };
@@ -270,6 +280,18 @@
 			path = Configs;
 			sourceTree = "<group>";
 		};
+		60A1946624F7FF4F000785D1 /* Bullion */ = {
+			isa = PBXGroup;
+			children = (
+				60A1946724F7FF60000785D1 /* PSBullionOption.swift */,
+				60A1946924F803BE000785D1 /* PSUnallocatedBullionBalance.swift */,
+				609A472624F8F89500AE0827 /* PSBullion.swift */,
+				609A472824F8FFE700AE0827 /* PSBullionOptionWeight.swift */,
+				609A472A24F9000F00AE0827 /* PSBullionFilter.swift */,
+			);
+			path = Bullion;
+			sourceTree = "<group>";
+		};
 		60AA35D7243F6A8800F857CD /* Transforms */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +315,7 @@
 		88B25A57206A4C6A00BE81C5 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				60A1946624F7FF4F000785D1 /* Bullion */,
 				C438A73222DF3681002B3640 /* Authorizations */,
 				ED6937DA21E8801B0008A1BD /* Transfers */,
 				1CB5AC6B20B405B7006CDDE3 /* Cards */,
@@ -552,19 +575,24 @@
 				601C0E162449A0A20080C262 /* PSAuthorizationUserLimits.swift in Sources */,
 				88B25A50206A302800BE81C5 /* AccountsApiRequestRouter.swift in Sources */,
 				ED6937DC21E880240008A1BD /* PSTransfer.swift in Sources */,
+				60A1946824F7FF60000785D1 /* PSBullionOption.swift in Sources */,
 				C438A73A22DF3E8F002B3640 /* PSCreateAuthorizationRequest.swift in Sources */,
 				88B25A4A206A23EB00BE81C5 /* AccountsApiClient.swift in Sources */,
 				6068EF3D24168CDE00496B4A /* PSPassword.swift in Sources */,
 				1C9E7F73212D890300B6A66D /* PSUpdatePaymentCardLimitRequest.swift in Sources */,
 				ED6937E221E881100008A1BD /* PSTransferInitiator.swift in Sources */,
 				1CB5AC7720B43F57006CDDE3 /* PSChargeInfo.swift in Sources */,
+				609A472B24F9000F00AE0827 /* PSBullionFilter.swift in Sources */,
 				1C7A2F7420D8EF0200195C0F /* PSPaymentCardPIN.swift in Sources */,
 				EDD289C3242645290014B47C /* PSAvailableCurrency.swift in Sources */,
 				ED6937E421E881340008A1BD /* PSTransferFailureStatus.swift in Sources */,
 				ED77A6FD2179B39B00723CD3 /* PSPaymentCardDeliveryDate.swift in Sources */,
+				60A1946A24F803BE000785D1 /* PSUnallocatedBullionBalance.swift in Sources */,
 				1CB5AC7120B43635006CDDE3 /* PSAccount.swift in Sources */,
 				880FCB96206CC6F900350F98 /* PSBalanceInformation.swift in Sources */,
 				C43D812522E044E300A94F56 /* PSGetAuthorizationsFilterRequest.swift in Sources */,
+				609A472724F8F89500AE0827 /* PSBullion.swift in Sources */,
+				609A472924F8FFE700AE0827 /* PSBullionOptionWeight.swift in Sources */,
 				1CB5AC6D20B4090E006CDDE3 /* PSPaymentCard.swift in Sources */,
 				88B25A59206A4C6A00BE81C5 /* PSIbanInformation.swift in Sources */,
 				ED1091FE21A99BC400C78C79 /* PSQuestionnaire.swift in Sources */,

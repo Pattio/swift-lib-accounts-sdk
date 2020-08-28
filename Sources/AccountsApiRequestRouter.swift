@@ -33,6 +33,9 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
     case getSigningLimits(userId: Int)
     case getConversionTransfers(filter: PSConversionTransferFilter)
     case getCardOrderRestrictions(cardAccountOwnerId: Int, cardOwnerId: Int)
+    case getBullionItems(filter: PSBullionFilter)
+    case getBullionOptions
+    case getUnallocatedBullionBalance(filter: PSBullionFilter)
     
     // MARK: - POST
     case createCard(PSCreatePaymentCardRequest)
@@ -88,7 +91,10 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
              .getPurposeCodes,
              .getSigningLimits,
              .getConversionTransfers,
-             .getCardOrderRestrictions:
+             .getCardOrderRestrictions,
+             .getBullionItems,
+             .getBullionOptions,
+             .getUnallocatedBullionBalance:
             return .get
 
         case .post,
@@ -260,6 +266,15 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
             
         case .cancelConversionTransfer(let id):
             return "/transfer/rest/v1/conversion-transfers/\(id)/cancel"
+        
+        case .getBullionItems:
+            return "/bullion/rest/v1/items"
+            
+        case .getBullionOptions:
+            return "/bullion/rest/v1/item-options"
+            
+        case .getUnallocatedBullionBalance:
+            return "/bullion/rest/v1/unallocated-balance"
         }
     }
     
@@ -338,6 +353,10 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
             return ["user_ids": userIds]
             
         case .getConversionTransfers(let filter):
+            return filter.toJSON()
+            
+        case .getBullionItems(let filter),
+             .getUnallocatedBullionBalance(let filter):
             return filter.toJSON()
             
         default:
