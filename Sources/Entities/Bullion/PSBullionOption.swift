@@ -1,3 +1,4 @@
+import PayseraCommonSDK
 import ObjectMapper
 
 public class PSBullionOption: Mappable {
@@ -10,6 +11,7 @@ public class PSBullionOption: Mappable {
     public var maker: String!
     public var originCountry: String!
     public var preciousMetalType: String!
+    public var purchaseAmount: PSMoney!
     
     public init() {}
     
@@ -25,5 +27,6 @@ public class PSBullionOption: Mappable {
         maker               <- map["maker"]
         originCountry       <- map["country_of_origin"]
         preciousMetalType   <- map["precious_metal_type"]
+        purchaseAmount      <- map["purchase_amount"]
     }
 }

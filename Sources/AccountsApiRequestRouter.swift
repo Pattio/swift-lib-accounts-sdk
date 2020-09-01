@@ -34,7 +34,7 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
     case getConversionTransfers(filter: PSConversionTransferFilter)
     case getCardOrderRestrictions(cardAccountOwnerId: Int, cardOwnerId: Int)
     case getBullionItems(filter: PSBullionFilter)
-    case getBullionOptions
+    case getBullionOptions(filter: PSBaseFilter)
     case getUnallocatedBullionBalance(filter: PSBullionFilter)
     
     // MARK: - POST
@@ -357,6 +357,9 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
             
         case .getBullionItems(let filter),
              .getUnallocatedBullionBalance(let filter):
+            return filter.toJSON()
+            
+        case .getBullionOptions(let filter):
             return filter.toJSON()
             
         default:

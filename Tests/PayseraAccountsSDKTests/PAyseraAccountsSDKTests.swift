@@ -520,9 +520,10 @@ class AccountsSDKTests: XCTestCase {
     func testGetBullionOptions() {
         let expectation = XCTestExpectation(description: "Available bullion options should be returned")
         var object: PSMetadataAwareResponse<PSBullionOption>?
+        let filter = PSBaseFilter()
         
         accountsApiClient
-            .getBullionOptions()
+            .getBullionOptions(filter: filter)
             .done { result in object = result }
             .catch { error in XCTFail(error.localizedDescription) }
             .finally { expectation.fulfill() }
