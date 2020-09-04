@@ -43,6 +43,8 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
     case createAccount(userId: Int)
     case signConversionTransfer(transferId: String)
     case cancelConversionTransfer(transferId: String)
+    case buyBullion(identifier: String, accountNumber: String)
+    case sellBullion(hash: String)
     
     // MARK: - PUT
     case deactivateAccount(accountNumber: String)
@@ -100,7 +102,9 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
         case .post,
              .createCard,
              .createAccount,
-             .createAuthorization:
+             .createAuthorization,
+             .buyBullion,
+             .sellBullion:
             return .post
             
         case .put,
@@ -275,6 +279,12 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
             
         case .getUnallocatedBullionBalance:
             return "/bullion/rest/v1/unallocated-balance"
+            
+        case .buyBullion:
+            return "/bullion/rest/v1/items/buy"
+        
+        case .sellBullion:
+            return "/bullion/rest/v1/items/sell"
         }
     }
     
@@ -361,6 +371,15 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
             
         case .getBullionOptions(let filter):
             return filter.toJSON()
+            
+        case .buyBullion(let identifier, let accountNumber):
+            return [
+                "account_number": accountNumber,
+                "identifier": identifier
+            ]
+            
+        case .sellBullion(let hash):
+            return ["hash": hash]
             
         default:
             return nil

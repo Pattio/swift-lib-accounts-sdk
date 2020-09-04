@@ -547,4 +547,28 @@ class AccountsSDKTests: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
         XCTAssertNotNil(object)
     }
+    
+    func testBuyBullion() {
+        let expectation = XCTestExpectation(description: "Bullion should be successfully bought")
+        
+        accountsApiClient
+            .buyBullion(identifier: "test_coin", accountNumber: "EVPXXXXXXXXXXXXXXX")
+            .done { }
+            .catch { error in XCTFail(error.localizedDescription) }
+            .finally { expectation.fulfill() }
+        
+        wait(for: [expectation], timeout: 5.0)
+    }
+    
+    func testSellBullion() {
+        let expectation = XCTestExpectation(description: "Bullion should be successfully sold")
+        
+        accountsApiClient
+            .sellBullion(hash: "7WtnrMMlVYSdrKxmF3KrIfg656op9S03")
+            .done { }
+            .catch { error in XCTFail(error.localizedDescription) }
+            .finally { expectation.fulfill() }
+        
+        wait(for: [expectation], timeout: 5.0)
+    }
 }

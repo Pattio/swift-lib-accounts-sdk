@@ -228,4 +228,17 @@ public class AccountsApiClient: PSBaseApiClient {
     ) -> Promise<PSMetadataAwareResponse<PSUnallocatedBullionBalance>> {
         return doRequest(requestRouter: AccountsApiRequestRouter.getUnallocatedBullionBalance(filter: filter))
     }
+    
+    public func buyBullion(identifier: String, accountNumber: String) -> Promise<Void> {
+        return doRequest(
+            requestRouter: AccountsApiRequestRouter.buyBullion(
+                identifier: identifier,
+                accountNumber: accountNumber
+            )
+        )
+    }
+    
+    public func sellBullion(hash: String) -> Promise<Void> {
+        return doRequest(requestRouter: AccountsApiRequestRouter.sellBullion(hash: hash))
+    }
 }
