@@ -241,4 +241,8 @@ public class AccountsApiClient: PSBaseApiClient {
     public func sellBullion(hash: String) -> Promise<Void> {
         return doRequest(requestRouter: AccountsApiRequestRouter.sellBullion(hash: hash))
     }
+    
+    public func getSpreadPercentage(request: PSSpreadPercentageRequest) -> Promise<PSSpreadPercentageResponse> {
+        return doRequest(requestRouter: AccountsApiRequestRouter.getSpreadPercentage(request: request))
+    }
 }

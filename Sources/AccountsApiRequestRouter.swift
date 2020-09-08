@@ -36,6 +36,7 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
     case getBullionItems(filter: PSBullionFilter)
     case getBullionOptions(filter: PSBaseFilter)
     case getUnallocatedBullionBalance(filter: PSBullionFilter)
+    case getSpreadPercentage(request: PSSpreadPercentageRequest)
     
     // MARK: - POST
     case createCard(PSCreatePaymentCardRequest)
@@ -96,7 +97,8 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
              .getCardOrderRestrictions,
              .getBullionItems,
              .getBullionOptions,
-             .getUnallocatedBullionBalance:
+             .getUnallocatedBullionBalance,
+             .getSpreadPercentage:
             return .get
 
         case .post,
@@ -285,6 +287,9 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
         
         case .sellBullion:
             return "/bullion/rest/v1/items/sell"
+            
+        case .getSpreadPercentage:
+            return "/currency-exchange/rest/v1/currency-exchanges/spread-percentage"
         }
     }
     
@@ -380,6 +385,9 @@ public enum AccountsApiRequestRouter: URLRequestConvertible {
             
         case .sellBullion(let hash):
             return ["hash": hash]
+            
+        case .getSpreadPercentage(let request):
+            return request.toJSON()
             
         default:
             return nil
